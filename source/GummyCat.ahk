@@ -587,24 +587,29 @@ IME_GET(WinTitle="A")  {
 }
 
 SetDefaultKeyboard(LocaleID){
-	Global
-	SPI_SETDEFAULTINPUTLANG := 0x005A
-	SPIF_SENDWININICHANGE := 2
+	Static SPI_SETDEFAULTINPUTLANG := 0x005A, SPIF_SENDWININICHANGE := 2
+	
 	Lan := DllCall("LoadKeyboardLayout", "Str", Format("{:08x}", LocaleID), "Int", 0)
-	VarSetCapacity(Lan%LocaleID%, 4, 0)
-	NumPut(LocaleID, Lan%LocaleID%)
-	DllCall("SystemParametersInfo", "UInt", SPI_SETDEFAULTINPUTLANG, "UInt", 0, "UPtr", &Lan%LocaleID%, "UInt", SPIF_SENDWININICHANGE)
+	VarSetCapacity(binaryLocaleID, 4, 0)
+	NumPut(LocaleID, binaryLocaleID)
+	DllCall("SystemParametersInfo", "UInt", SPI_SETDEFAULTINPUTLANG, "UInt", 0, "UPtr", &binaryLocaleID, "UInt", SPIF_SENDWININICHANGE)
+	
 	WinGet, windows, List
-	Loop %windows% {
-		PostMessage 0x50, 0, %Lan%, , % "ahk_id " windows%A_Index%
+	Loop % windows {
+		PostMessage 0x50, 0, % Lan, , % "ahk_id " windows%A_Index%
 	}
 }
 return
+GetKeyboardLanguage()
+{
+	if !KBLayout := DllCall("user32.dll\GetKeyboardLayout")
+		return false
+	
+	return KBLayout & 0xFFFF
+}
 
 
 e::
-PostMessage 0x50, 0, 0x4120412,, "A"
-
 If (IME_GET()  = 1)
 	{
 	PostMessage 0x50, 0, 0x4110411,, "A"
@@ -617,6 +622,43 @@ else{
     IME_SET(1)
 	return
 }
+
+q::
+if !LangID := GetKeyboardLanguagee(WinActive("A"))
+{
+	return
+}
+ 
+if (LangID = 0x0409){
+    SetDefaultKeyboard(0x0401)
+    return
+}
+else
+    setdefaultkeyboard(0x0409)
+return
+ 
+GetKeyboardLanguagee(_hWnd=0)
+{
+	if !_hWnd
+		ThreadId=0
+	else
+		if !ThreadId := DllCall("user32.dll\GetWindowThreadProcessId", "Ptr", _hWnd, "UInt", 0, "UInt")
+			return false
+	
+	if !KBLayout := DllCall("user32.dll\GetKeyboardLayout", "UInt", ThreadId, "UInt")
+		return false
+	
+	return KBLayout & 0xFFFF
+}
+if (LangID = 0x0409){
+    SetDefaultKeyboard(0x0401)
+    return
+}
+else{
+    setdefaultkeyboard(0x0409)
+    return
+}
+
 
 /::up
 Ralt::left
