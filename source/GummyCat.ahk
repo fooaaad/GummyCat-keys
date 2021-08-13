@@ -2,6 +2,7 @@
 SetKeyDelay, 0, 50
 #SingleInstance force
 #NoEnv
+setdefaultkeyboard(0x0409)
 SetWorkingDir %A_ScriptDir%
 #Persistent
 #InputLevel, 1
@@ -526,7 +527,7 @@ return
 p::Media_Stop
 l::Media_Prev
 SC027::Media_Play_Pause
-'::Media_Next
+SC028::Media_Next
 
 t::
 If FileExist("2output.ini"){
