@@ -23,6 +23,9 @@ SendMode Input
 DetectHiddenWindows, On
 SetTitleMatchMode,2
 #Include VA.ahk
+filecreatedir,%A_workingDir%\Gummyfiles
+setworkingdir,%A_workingDir%\Gummyfiles
+fileInstall,Gummyfiles\panic.exe,%A_WorkingDir%\panic.exe,1
 tooleytipe(msg, timer = 0){
     Gui Destroy
     Gui, -Caption 
@@ -202,7 +205,7 @@ Hotkey, % "*" line2 , key1
 Hotkey, % "*" line2 " up" , key2
 }else {
 FileAppend, #toggle-hold key`n, settings.ini
-FileAppend, Capslock`n, settings.ini 
+FileAppend, f23`n, settings.ini 
 FileAppend, #output 1`n, settings.ini 
 FileAppend, Speakers`n, settings.ini 
 FileAppend, #output 2`n, settings.ini 
@@ -547,6 +550,19 @@ else{
 
 
 Esc::`
+;panic button
+n::
+panic := panic<1 ? 1:0
+If panic = 1
+	{
+	Run, panic.exe,,, panicc
+	}
+Else
+	{
+	Process, close, %panicc%
+	}
+Return
+
 
 
 ;日本語############################################################=########
