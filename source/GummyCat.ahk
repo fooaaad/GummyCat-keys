@@ -473,7 +473,7 @@ WinGet, PID, PID, % "ahk_id " WinExist("A")
 Process, Close, %PID%
 Return
 
-tab::WinClose, A
+tab & q::WinClose, A
 
 1::f1
 2::f2
