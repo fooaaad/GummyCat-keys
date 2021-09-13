@@ -5,7 +5,7 @@ SetKeyDelay, 0, 50
 setdefaultkeyboard(0x0409)
 SetWorkingDir %A_ScriptDir%
 #Persistent
-#InputLevel, 1
+#InputLevel 22 
 #MaxHotkeysPerInterval 99000000
 #HotkeyInterval 99000000
 #KeyHistory 0
@@ -488,7 +488,7 @@ tab & q::WinClose, A
 -::f11
 =::f12
 
-g::PrintScreen
+
 b::ScrollLock
 
 h::Del
