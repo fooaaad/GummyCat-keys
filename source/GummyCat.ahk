@@ -26,6 +26,7 @@ SetTitleMatchMode,2
 filecreatedir,%A_workingDir%\Gummyfiles
 setworkingdir,%A_workingDir%\Gummyfiles
 fileInstall,Gummyfiles\panic.exe,%A_WorkingDir%\panic.exe,1
+fileInstall,Gummyfiles\Launchan.exe,%A_WorkingDir%\Launchan.exe,1
 tooleytipe(msg, timer = 0){
     Gui Destroy
     Gui, -Caption 
@@ -498,6 +499,9 @@ j::end
 i::PgUp
 k::PgDn
 
+g::
+run, Launchan.exe
+return
 
 ^backspace::
 Suspend, On
