@@ -3,6 +3,9 @@ tab::
 send {lbutton}
 hay++
 return
-Del::
-msgbox, %hay%
+\::
+clipboard =  %hay%
+hay = 0
+return
+del::
 exitapp

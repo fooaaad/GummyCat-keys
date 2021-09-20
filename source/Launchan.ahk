@@ -55,6 +55,8 @@ Gui Destroy
     Gui, Font, S10
 	Gui, +AlwaysOnTop +Owner
 
+
+Gui, Add, text,,{ E-edit  D-delete  N-new  I-Dir }
 Loop, %A_workingdir%\ahk's\*.ahk
 {
 number++
@@ -80,6 +82,11 @@ Gui, Add, Edit ,w200 vhoyy
 Gui, Show, NoActivate xCenter yCenter  NA
 guicontrol, focus, hoyy
 
+
++i::
+Gui,  Destroy
+run, % A_workingdir "\ahk's"
+exitapp
 
 +n::
 GuiControlGet, hoyy
