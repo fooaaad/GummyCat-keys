@@ -91,7 +91,7 @@ exitapp
 +n::
 GuiControlGet, hoyy
 Gui,  Destroy
-run, % "nvim " A_workingdir "\ahk's\" hoyy ".ahk" 
+run, % "vim " A_workingdir "\ahk's\" hoyy ".ahk" 
 exitapp
 
 +e::
@@ -103,7 +103,7 @@ Loop, %A_workingdir%\ahk's\*.ahk
 number++
 
     if (number = hoyy){
-        run, % "nvim " A_loopfiledir "\" A_loopfilename
+        run, % "vim " A_loopfiledir "\" A_loopfilename
         exitapp
     }
 }
