@@ -25,8 +25,8 @@ SetTitleMatchMode,2
 #Include VA.ahk
 filecreatedir,%A_workingDir%\Gummyfiles
 setworkingdir,%A_workingDir%\Gummyfiles
-fileInstall,Gummyfiles\panic.exe,%A_WorkingDir%\panic.exe,1
-fileInstall,Gummyfiles\Launchan.exe,%A_WorkingDir%\Launchan.exe,1
+fileInstall, Gummyfiles\panic.exe, %A_WorkingDir%\panic.exe, 1
+fileInstall, Gummyfiles\Launchan.exe, %A_WorkingDir%\Launchan.exe, 1
 tooleytipe(msg, timer = 0){
     Gui Destroy
     Gui, -Caption 
