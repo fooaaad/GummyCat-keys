@@ -1,4 +1,4 @@
-﻿#NoEnv
+#NoEnv
 SetKeyDelay, 0, 50
 #SingleInstance force
 #NoEnv
@@ -207,9 +207,9 @@ Hotkey, % "*" line2 " up" , key2
 }else {
 FileAppend, #toggle-hold key`n, settings.ini
 FileAppend, f23`n, settings.ini 
-FileAppend, #output 1`n, settings.ini 
+FileAppend, #output inside ear`n, settings.ini 
 FileAppend, Speakers`n, settings.ini 
-FileAppend, #output 2`n, settings.ini 
+FileAppend, #output outside ear`n, settings.ini 
 FileAppend, Nvidia`n, settings.ini 
 reload
 return
@@ -535,6 +535,7 @@ p::Media_Stop
 l::Media_Prev
 SC027::Media_Play_Pause
 SC028::Media_Next
+
 
 t::
 If FileExist("2output.ini"){
