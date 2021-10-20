@@ -103,7 +103,7 @@ Loop, %A_workingdir%\ahk's\*.ahk
 number++
 
     if (number = hoyy){
-        run, % "cmd.exe /c vim " A_loopfiledir "\" A_loopfilename
+        run, % "vim " A_loopfiledir "\" A_loopfilename
         exitapp
     }
 }
