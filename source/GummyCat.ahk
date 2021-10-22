@@ -22,6 +22,7 @@ SetControlDelay, -1
 SendMode Input
 DetectHiddenWindows, On
 SetTitleMatchMode,2
+tooleytipe("Gummycat",2000)
 #Include VA.ahk
 filecreatedir,%A_workingDir%\Gummyfiles
 setworkingdir,%A_workingDir%\Gummyfiles
@@ -686,3 +687,4 @@ else{
 Ralt::left
 RCtrl::right
 AppsKey::down
+^!+f12::reload
