@@ -464,10 +464,83 @@ f:: Click, WheelDown
 
 
 space:: LButton
-v:: Click, Down
 c::RButton
-z:: Click, Down, right
 x:: MButton
+
+LButton::
+
+CoordMode, Mouse, Relative
+MouseGetPos, cur_win_x, cur_win_y, window_id
+WinGet, window_minmax, MinMax, ahk_id %window_id%
+
+; Return if the window is maximized or minimized
+if window_minmax <> 0
+{
+  return
+}
+
+CoordMode, Mouse, Screen
+SetWinDelay, 0
+
+loop
+{
+  ; exit the loop if the left mouse button was released
+  if !GetKeyState("LButton", "P")
+  {
+    break
+  }
+
+  ; move the window based on cursor position
+  MouseGetPos, cur_x, cur_y
+  WinMove, ahk_id %window_id%,, (cur_x - cur_win_x), (cur_y - cur_win_y)
+}
+
+return
+z::
+CoordMode, Mouse, Screen
+WinGet, winid ,, A
+loop
+{
+  ; exit the loop if the left mouse button was released
+  if !GetKeyState("z", "P")
+  {
+    break
+  }
+
+  ; move the window based on cursor position
+  MouseGetPos, cur_x, cur_y
+  WinMove, ahk_id %winid%,, %cur_x%, %cur_y%
+}
+return
+v::
+
+CoordMode, Mouse, Relative
+MouseGetPos, cur_win_x, cur_win_y, window_id
+WinGet, window_minmax, MinMax, ahk_id %window_id%
+
+; Return if the window is maximized or minimized
+if window_minmax <> 0
+{
+  return
+}
+
+CoordMode, Mouse, Screen
+
+loop
+{
+  ; exit the loop if the left mouse button was released
+  if !GetKeyState("v", "P")
+  {
+    break
+  }
+
+  ; move the window based on cursor position
+  MouseGetPos, cur_x, cur_y
+  WinMove, ahk_id %window_id%,, (cur_x - cur_win_x), (cur_y - cur_win_y)
+}
+
+return
+
 
 
 esc::
@@ -499,6 +572,7 @@ u::Home
 j::end
 i::PgUp
 k::PgDn
+#k::Run D:\Programming\ahkws\kde.ahk 
 
 g::
 run, Launchan.exe
@@ -646,7 +720,7 @@ else{
 	return
 }
 
-q::
++q::
 if !LangID := GetKeyboardLanguagee(WinActive("A"))
 {
 	return
