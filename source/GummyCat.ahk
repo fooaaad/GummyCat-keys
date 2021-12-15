@@ -218,6 +218,7 @@ return
 ;inputttttttt
 
 key2:
+send,{lbutton up}
 Suspend, On
 Gui, tip: hide 
 SetTimer, MoveCursor, off
@@ -464,6 +465,7 @@ f:: Click, WheelDown
 
 
 space:: LButton
++SPACE::  Winset, Alwaysontop, , A
 c::RButton
 x:: MButton
 
@@ -572,7 +574,48 @@ u::Home
 j::end
 i::PgUp
 k::PgDn
-#k::Run D:\Programming\ahkws\kde.ahk 
+#k::
+Loop, D:\KDE\*
+{
+
+     FileGetTime, Time, %A_LoopFileFullPath%, C
+
+     If (Time > Time_Orig)
+
+     {
+
+          Time_Orig := Time
+
+          File := A_LoopFilefullpath
+          File := StrReplace(File, "\", "/")
+
+     }
+
+}
+Run drop '"%File%"'
+Return
+
+#d::
+Loop, D:\KDE\*
+
+{
+
+     FileGetTime, Time, %A_LoopFileFullPath%, C
+
+     If (Time > Time_Orig)
+
+     {
+
+          Time_Orig := Time
+
+          File := A_LoopFilefullpath
+          File := StrReplace(File, "\", "/")
+
+     }
+
+}
+Run %File%
+return
 
 g::
 run, Launchan.exe
@@ -757,8 +800,4 @@ else{
 }
 
 
-/::up
-Ralt::left
-RCtrl::right
-AppsKey::down
 ^!+f12::reload
