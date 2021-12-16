@@ -465,10 +465,11 @@ f:: Click, WheelDown
 
 
 space:: LButton
-+SPACE::  Winset, Alwaysontop, , A
 c::RButton
 x:: MButton
-
++SPACE::
+Winset, Alwaysontop, , A
+return
 LButton::
 
 CoordMode, Mouse, Relative
