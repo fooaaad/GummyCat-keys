@@ -1,3 +1,0 @@
-/::up
-
-delete::exitapp
