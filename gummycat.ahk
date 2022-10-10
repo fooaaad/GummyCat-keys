@@ -823,17 +823,7 @@ SC028::Media_Next
 
 browser_home::run TV.lnk
 
-
 q::
-iF switch = 1
-{
-run, %comspec% /c nircmd setdefaultsounddevice "LG TV" 1,,hide
-switch=2
-tooleytipe("LG",1000)
-winkill, aout.exe
-winkill, ain.exe
-return
-}
 if switch = 2
 {
 run, %comspec% /c nircmd setdefaultsounddevice "CABLE input" 1,,hide
@@ -856,7 +846,16 @@ run, ain.exe ,, hide, ye
 tooleytipe("Speakers",1000)
 return
 }
-switch=1
+else
+{
+run, %comspec% /c nircmd setdefaultsounddevice "LG TV" 1,,hide
+switch=2
+tooleytipe("LG",1000)
+winkill, aout.exe
+winkill, ain.exe
+return
+}
+
 return
 Esc::`
 #ifWinNotActive ahk_class vncviewer
